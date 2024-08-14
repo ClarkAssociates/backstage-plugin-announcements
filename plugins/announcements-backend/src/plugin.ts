@@ -28,8 +28,6 @@ export const announcementsPlugin = createBackendPlugin({
         httpAuth: coreServices.httpAuth,
       },
       async init({ http, logger, permissions, database, httpAuth }) {
-        console.log('In init');
-        console.log(announcementsDatabase);
         http.use(
           await createRouter({
             permissions: permissions,
