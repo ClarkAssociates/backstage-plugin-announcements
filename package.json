@@ -2,9 +2,6 @@
   "name": "root",
   "version": "1.0.0",
   "private": true,
-  "engines": {
-    "node": "18 || 20"
-  },
   "scripts": {
     "dev": "concurrently \"yarn start\" \"yarn start-backend\"",
     "start": "yarn workspace @clark-associates/backstage-plugin-announcements start",
@@ -58,5 +55,8 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@3.2.4"
+  "volta": {
+    "node": "20.16.0",
+    "yarn": "3.2.4"
+  }
 }
