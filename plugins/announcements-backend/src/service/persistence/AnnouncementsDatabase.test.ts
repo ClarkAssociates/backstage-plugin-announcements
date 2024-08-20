@@ -23,8 +23,7 @@ describe('AnnouncementsDatabase', () => {
   beforeAll(async () => {
     testDbClient = await databases.init('SQLITE_3');
     database = createDatabaseManager(testDbClient);
-    store = (await initializePersistenceContext(database, undefined))
-      .announcementsStore;
+    store = (await initializePersistenceContext(database)).announcementsStore;
   });
 
   afterEach(async () => {

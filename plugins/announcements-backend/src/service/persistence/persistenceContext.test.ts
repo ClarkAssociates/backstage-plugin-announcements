@@ -15,23 +15,23 @@ import { TestDatabases } from '@backstage/backend-test-utils';
 
 class TestAnnouncementsDatabase implements IAnnouncementsDatabase {
   announcements(
-    request: AnnouncementsFilters,
+    _request: AnnouncementsFilters,
   ): Promise<AnnouncementModelsList> {
     throw new Error('Method not implemented.');
   }
-  announcementByID(id: string): Promise<AnnouncementModel | undefined> {
+  announcementByID(_id: string): Promise<AnnouncementModel | undefined> {
     throw new Error('Method not implemented.');
   }
-  deleteAnnouncementByID(id: string): Promise<void> {
+  deleteAnnouncementByID(_id: string): Promise<void> {
     throw new Error('Method not implemented.');
   }
   insertAnnouncement(
-    announcement: AnnouncementUpsert,
+    _announcement: AnnouncementUpsert,
   ): Promise<AnnouncementModel> {
     throw new Error('Method not implemented.');
   }
   updateAnnouncement(
-    announcement: AnnouncementUpsert,
+    _announcement: AnnouncementUpsert,
   ): Promise<AnnouncementModel> {
     throw new Error('Method not implemented.');
   }
@@ -50,7 +50,7 @@ describe('initializePersistenceContext', () => {
   let context: PersistenceContext;
 
   beforeEach(async () => {
-    context = await initializePersistenceContext(mockedDb, undefined);
+    context = await initializePersistenceContext(mockedDb);
   });
 
   it('initializes default announcements store', async () => {
@@ -61,12 +61,12 @@ describe('initializePersistenceContext', () => {
     expect(context.categoriesStore).toBeInstanceOf(CategoriesDatabase);
   });
 
-  it('initializes specified announcemeents store', async () => {
-    const testAnnouncemntsDatabase = new TestAnnouncementsDatabase();
+  it('initializes specified announcements store', async () => {
+    const testAnnouncementsDatabase = new TestAnnouncementsDatabase();
 
     const testContext = await initializePersistenceContext(
       mockedDb,
-      testAnnouncemntsDatabase,
+      testAnnouncementsDatabase,
     );
 
     expect(testContext.announcementsStore).toBeInstanceOf(

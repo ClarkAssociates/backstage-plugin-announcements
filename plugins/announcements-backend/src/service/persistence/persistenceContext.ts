@@ -40,9 +40,7 @@ export const initializePersistenceContext = async (
 
   return {
     announcementsStore:
-      announcementsDatabase !== undefined
-        ? announcementsDatabase
-        : new AnnouncementsDatabase(client),
+      announcementsDatabase ?? new AnnouncementsDatabase(client),
     categoriesStore: new CategoriesDatabase(client),
   };
 };
