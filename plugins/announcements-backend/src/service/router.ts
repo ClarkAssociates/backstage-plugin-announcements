@@ -24,7 +24,7 @@ interface AnnouncementRequest {
   title: string;
   excerpt: string;
   body: string;
-  isLimitedAudiance: boolean;
+  isLimitedAudience: boolean;
 }
 
 interface CategoryRequest {

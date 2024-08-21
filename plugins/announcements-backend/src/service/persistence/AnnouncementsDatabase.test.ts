@@ -142,6 +142,7 @@ describe('AnnouncementsDatabase', () => {
       excerpt: 'excerpt',
       body: 'body',
       created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+      isLimitedAudience: true,
     });
 
     expect((await store.announcements({})).count).toBe(1);
