@@ -5,7 +5,7 @@
  */
 exports.up = async function up(knex) {
   return knex.schema.table('announcements', table => {
-    table.boolean('isLimitedAudience').notNullable().defaultTo(false);
+    table.boolean('isLimitedAudience').defaultTo(false);
   });
 };
 
