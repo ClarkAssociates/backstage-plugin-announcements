@@ -11,7 +11,7 @@ export type Announcement = {
   excerpt: string;
   body: string;
   created_at: string;
-  isLimitedAudience: boolean;
+  isLimitedAudience?: boolean;
 };
 
 export type AnnouncementsList = {
