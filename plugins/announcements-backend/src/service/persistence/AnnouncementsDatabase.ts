@@ -57,6 +57,7 @@ const announcementUpsertToDB = (
     body: announcement.body,
     publisher: announcement.publisher,
     created_at: announcement.created_at.toSQL()!,
+    isLimitedAudience: announcement.isLimitedAudience,
   };
 };
 
@@ -77,6 +78,7 @@ const DBToAnnouncementWithCategory = (
     body: announcementDb.body,
     publisher: announcementDb.publisher,
     created_at: timestampToDateTime(announcementDb.created_at),
+    isLimitedAudience: announcementDb.isLimitedAudience,
   };
 };
 
@@ -106,6 +108,7 @@ export class AnnouncementsDatabase implements IAnnouncementsDatabase {
         'category',
         'created_at',
         'categories.title as category_title',
+        'isLimitedAudience',
       )
       .orderBy('created_at', 'desc')
       .leftJoin('categories', 'announcements.category', 'categories.slug');
@@ -139,10 +142,12 @@ export class AnnouncementsDatabase implements IAnnouncementsDatabase {
         'category',
         'created_at',
         'categories.title as category_title',
+        'isLimitedAudience',
       )
       .leftJoin('categories', 'announcements.category', 'categories.slug')
       .where('id', id)
       .first();
+
     if (!dbAnnouncement) {
       return undefined;
     }

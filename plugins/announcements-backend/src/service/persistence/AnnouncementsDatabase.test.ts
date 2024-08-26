@@ -47,6 +47,7 @@ describe('AnnouncementsDatabase', () => {
       excerpt: 'excerpt',
       body: 'body',
       created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+      isLimitedAudience: true,
     });
 
     const announcement = await store.announcementByID('id');
@@ -59,6 +60,7 @@ describe('AnnouncementsDatabase', () => {
       body: 'body',
       category: undefined,
       created_at: timestampToDateTime('2023-10-26T15:28:08.539Z'),
+      isLimitedAudience: 1,
     });
   });
 
@@ -70,6 +72,7 @@ describe('AnnouncementsDatabase', () => {
       excerpt: 'excerpt',
       body: 'body',
       created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+      isLimitedAudience: false,
     });
 
     const announcements = await store.announcements({});
@@ -85,6 +88,7 @@ describe('AnnouncementsDatabase', () => {
           body: 'body',
           category: undefined,
           created_at: timestampToDateTime('2023-10-26T15:28:08.539Z'),
+          isLimitedAudience: 0,
         },
       ],
     });
@@ -98,6 +102,7 @@ describe('AnnouncementsDatabase', () => {
       excerpt: 'excerpt',
       body: 'body',
       created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+      isLimitedAudience: false,
     });
 
     await store.updateAnnouncement({
@@ -107,6 +112,7 @@ describe('AnnouncementsDatabase', () => {
       excerpt: 'excerpt2',
       body: 'body2',
       created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+      isLimitedAudience: true,
     });
 
     const announcements = await store.announcements({});
@@ -122,6 +128,7 @@ describe('AnnouncementsDatabase', () => {
           body: 'body2',
           category: undefined,
           created_at: timestampToDateTime('2023-10-26T15:28:08.539Z'),
+          isLimitedAudience: 1,
         },
       ],
     });
@@ -135,6 +142,7 @@ describe('AnnouncementsDatabase', () => {
       excerpt: 'excerpt',
       body: 'body',
       created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+      isLimitedAudience: true,
     });
 
     expect((await store.announcements({})).count).toBe(1);
@@ -177,6 +185,7 @@ describe('AnnouncementsDatabase', () => {
         body: 'body',
         category: 'category',
         created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+        isLimitedAudience: false,
       });
 
       await store.insertAnnouncement({
@@ -187,6 +196,7 @@ describe('AnnouncementsDatabase', () => {
         body: 'body2',
         category: 'category',
         created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+        isLimitedAudience: false,
       });
 
       await store.insertAnnouncement({
@@ -197,6 +207,7 @@ describe('AnnouncementsDatabase', () => {
         body: 'body3',
         category: 'different',
         created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+        isLimitedAudience: false,
       });
 
       const announcements = await store.announcements({
@@ -217,6 +228,7 @@ describe('AnnouncementsDatabase', () => {
               title: 'Category',
             },
             created_at: timestampToDateTime('2023-10-26T15:28:08.539Z'),
+            isLimitedAudience: 0,
           },
           {
             id: 'id',
@@ -229,6 +241,7 @@ describe('AnnouncementsDatabase', () => {
               title: 'Category',
             },
             created_at: timestampToDateTime('2023-10-26T15:28:08.539Z'),
+            isLimitedAudience: 0,
           },
         ],
       });
@@ -242,6 +255,7 @@ describe('AnnouncementsDatabase', () => {
         excerpt: 'excerpt',
         body: 'body',
         created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+        isLimitedAudience: false,
       });
 
       await store.insertAnnouncement({
@@ -251,6 +265,7 @@ describe('AnnouncementsDatabase', () => {
         excerpt: 'excerpt2',
         body: 'body2',
         created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+        isLimitedAudience: false,
       });
 
       const announcements = await store.announcements({
@@ -268,6 +283,7 @@ describe('AnnouncementsDatabase', () => {
             body: 'body',
             category: undefined,
             created_at: timestampToDateTime('2023-10-26T15:28:08.539Z'),
+            isLimitedAudience: 0,
           },
         ],
       });
@@ -281,6 +297,7 @@ describe('AnnouncementsDatabase', () => {
         excerpt: 'excerpt',
         body: 'body',
         created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+        isLimitedAudience: false,
       });
 
       await store.insertAnnouncement({
@@ -290,6 +307,7 @@ describe('AnnouncementsDatabase', () => {
         excerpt: 'excerpt2',
         body: 'body2',
         created_at: DateTime.fromISO('2023-10-26T15:28:08.539Z'),
+        isLimitedAudience: true,
       });
 
       const announcements = await store.announcements({
@@ -307,6 +325,7 @@ describe('AnnouncementsDatabase', () => {
             body: 'body2',
             category: undefined,
             created_at: timestampToDateTime('2023-10-26T15:28:08.539Z'),
+            isLimitedAudience: 1,
           },
         ],
       });
