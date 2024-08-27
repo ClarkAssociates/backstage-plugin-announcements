@@ -56,13 +56,7 @@ describe('DefaultAnnouncementsService', () => {
   });
 
   it('throws on error', async () => {
-    server.use(
-      rest.get(`${mockBaseUrl}/announcements`, (_, res, ctx) =>
-        res(ctx.status(500)),
-      ),
-    );
-    await expect(client.announcements()).rejects.toThrow(
-      'Request failed with 500 Internal Server Error',
-    );
+    server.use(rest.get(`${mockBaseUrl}/announcements`, (_, res, ctx) => res(ctx.status(500))));
+    await expect(client.announcements()).rejects.toThrow('Request failed with 500 Internal Server Error');
   });
 });

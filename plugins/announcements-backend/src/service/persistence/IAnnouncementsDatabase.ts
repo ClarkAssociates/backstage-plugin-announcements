@@ -1,8 +1,5 @@
 import { AnnouncementsFilters } from '@clark-associates/backstage-plugin-announcements-common';
-import {
-  AnnouncementModelsList,
-  AnnouncementUpsert,
-} from './AnnouncementsDatabase';
+import { AnnouncementModelsList, AnnouncementUpsert } from './AnnouncementsDatabase';
 import { AnnouncementModel } from '../model';
 
 export interface IAnnouncementsDatabase {
@@ -12,11 +9,7 @@ export interface IAnnouncementsDatabase {
 
   deleteAnnouncementByID(id: string): Promise<void>;
 
-  insertAnnouncement(
-    announcement: AnnouncementUpsert,
-  ): Promise<AnnouncementModel>;
+  insertAnnouncement(announcement: AnnouncementUpsert): Promise<AnnouncementModel>;
 
-  updateAnnouncement(
-    announcement: AnnouncementUpsert,
-  ): Promise<AnnouncementModel>;
+  updateAnnouncement(announcement: AnnouncementUpsert): Promise<AnnouncementModel>;
 }

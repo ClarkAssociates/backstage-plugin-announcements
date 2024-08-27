@@ -1,32 +1,14 @@
 import React from 'react';
 import { DateTime } from 'luxon';
 import { usePermission } from '@backstage/plugin-permission-react';
-import {
-  InfoCard,
-  InfoCardVariants,
-  Link,
-  Progress,
-} from '@backstage/core-components';
+import { InfoCard, InfoCardVariants, Link, Progress } from '@backstage/core-components';
 import { useApi, useRouteRef } from '@backstage/core-plugin-api';
 import { announcementEntityPermissions } from '@clark-associates/backstage-plugin-announcements-common';
-import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
-} from '@material-ui/core';
+import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
-import {
-  announcementCreateRouteRef,
-  announcementViewRouteRef,
-  rootRouteRef,
-} from '../../routes';
-import {
-  announcementsApiRef,
-  useAnnouncements,
-} from '@clark-associates/backstage-plugin-announcements-react';
+import { announcementCreateRouteRef, announcementViewRouteRef, rootRouteRef } from '../../routes';
+import { announcementsApiRef, useAnnouncements } from '@clark-associates/backstage-plugin-announcements-react';
 
 const useStyles = makeStyles({
   newAnnouncementIcon: {
@@ -41,12 +23,7 @@ type AnnouncementsCardOpts = {
   variant?: InfoCardVariants;
 };
 
-export const AnnouncementsCard = ({
-  title,
-  max,
-  category,
-  variant = 'gridItem',
-}: AnnouncementsCardOpts) => {
+export const AnnouncementsCard = ({ title, max, category, variant = 'gridItem' }: AnnouncementsCardOpts) => {
   const classes = useStyles();
   const announcementsApi = useApi(announcementsApiRef);
   const announcementsLink = useRouteRef(rootRouteRef);
@@ -76,30 +53,19 @@ export const AnnouncementsCard = ({
   };
 
   return (
-    <InfoCard
-      title={title || 'Announcements'}
-      variant={variant}
-      deepLink={deepLink}
-    >
+    <InfoCard title={title || 'Announcements'} variant={variant} deepLink={deepLink}>
       <List dense>
         {announcements.results.map(announcement => (
           <ListItem key={announcement.id}>
             <ListItem>
               {lastSeen < DateTime.fromISO(announcement.created_at) && (
-                <ListItemIcon
-                  className={classes.newAnnouncementIcon}
-                  title="New"
-                >
+                <ListItemIcon className={classes.newAnnouncementIcon} title="New">
                   <NewReleasesIcon />
                 </ListItemIcon>
               )}
 
               <ListItemText
-                primary={
-                  <Link to={viewAnnouncementLink({ id: announcement.id })}>
-                    {announcement.title}
-                  </Link>
-                }
+                primary={<Link to={viewAnnouncementLink({ id: announcement.id })}>{announcement.title}</Link>}
                 secondary={
                   <>
                     {DateTime.fromISO(announcement.created_at).toRelative()}
@@ -107,11 +73,7 @@ export const AnnouncementsCard = ({
                       <>
                         {' '}
                         in{' '}
-                        <Link
-                          to={`${announcementsLink()}?category=${
-                            announcement.category.slug
-                          }`}
-                        >
+                        <Link to={`${announcementsLink()}?category=${announcement.category.slug}`}>
                           {announcement.category.title}
                         </Link>
                       </>
@@ -126,8 +88,7 @@ export const AnnouncementsCard = ({
         {announcements.count === 0 && !loadingPermission && canAdd && (
           <ListItem>
             <ListItemText>
-              No announcements yet, want to{' '}
-              <Link to={createAnnouncementLink()}>add one</Link>?
+              No announcements yet, want to <Link to={createAnnouncementLink()}>add one</Link>?
             </ListItemText>
           </ListItem>
         )}

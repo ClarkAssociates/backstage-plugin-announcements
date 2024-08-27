@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  MockPermissionApi,
-  TestApiProvider,
-  renderInTestApp,
-} from '@backstage/test-utils';
+import { MockPermissionApi, TestApiProvider, renderInTestApp } from '@backstage/test-utils';
 import { AnnouncementsPage } from './AnnouncementsPage';
 import { rootRouteRef } from '../../routes';
 import { permissionApiRef } from '@backstage/plugin-permission-react';
@@ -110,9 +106,7 @@ describe('AnnouncementsPage', () => {
       expect(rendered.getByText('New customNoun')).toBeInTheDocument();
 
       fireEvent.mouseOver(rendered.getByText('announcement-...'));
-      expect(
-        await rendered.findByText('announcement-title'),
-      ).toBeInTheDocument();
+      expect(await rendered.findByText('announcement-title')).toBeInTheDocument();
     });
   });
 });

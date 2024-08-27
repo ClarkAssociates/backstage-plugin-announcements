@@ -1,7 +1,4 @@
-import {
-  coreServices,
-  createBackendModule,
-} from '@backstage/backend-plugin-api';
+import { coreServices, createBackendModule } from '@backstage/backend-plugin-api';
 import { readTaskScheduleDefinitionFromConfig } from '@backstage/backend-tasks';
 import { AnnouncementCollatorFactory } from './collators/AnnouncementCollatorFactory';
 import { loggerToWinstonLogger } from '@backstage/backend-common';
@@ -21,14 +18,7 @@ export const searchModuleAnnouncementsCollator = createBackendModule({
         auth: coreServices.auth,
         indexRegistry: searchIndexRegistryExtensionPoint,
       },
-      async init({
-        config,
-        logger,
-        discovery,
-        scheduler,
-        auth,
-        indexRegistry,
-      }) {
+      async init({ config, logger, discovery, scheduler, auth, indexRegistry }) {
         const defaultSchedule = {
           frequency: { minutes: 10 },
           timeout: { minutes: 15 },
@@ -36,9 +26,7 @@ export const searchModuleAnnouncementsCollator = createBackendModule({
         };
 
         const schedule = config.has('search.collators.announcements.schedule')
-          ? readTaskScheduleDefinitionFromConfig(
-              config.getConfig('search.collators.announcements.schedule'),
-            )
+          ? readTaskScheduleDefinitionFromConfig(config.getConfig('search.collators.announcements.schedule'))
           : defaultSchedule;
 
         indexRegistry.addCollator({

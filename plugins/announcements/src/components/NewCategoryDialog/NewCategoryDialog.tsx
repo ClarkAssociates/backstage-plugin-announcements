@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { alertApiRef, useApi } from '@backstage/core-plugin-api';
 import { announcementsApiRef } from '@clark-associates/backstage-plugin-announcements-react';
 

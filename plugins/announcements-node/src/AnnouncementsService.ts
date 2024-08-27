@@ -1,8 +1,4 @@
-import {
-  createServiceFactory,
-  createServiceRef,
-  coreServices,
-} from '@backstage/backend-plugin-api';
+import { createServiceFactory, createServiceRef, coreServices } from '@backstage/backend-plugin-api';
 import { Announcement } from '@clark-associates/backstage-plugin-announcements-common';
 import { DefaultAnnouncementsService } from './DefaultAnnouncementsService';
 

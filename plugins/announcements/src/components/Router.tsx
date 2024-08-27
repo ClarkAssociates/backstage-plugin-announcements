@@ -40,10 +40,7 @@ export const Router = (props: RouterProps) => {
   return (
     <Routes>
       <Route path="/" element={<AnnouncementsPage {...propsWithDefaults} />} />
-      <Route
-        path={`${announcementViewRouteRef.path}`}
-        element={<AnnouncementPage {...propsWithDefaults} />}
-      />
+      <Route path={`${announcementViewRouteRef.path}`} element={<AnnouncementPage {...propsWithDefaults} />} />
       <Route
         path={`${announcementCreateRouteRef.path}`}
         element={
@@ -61,10 +58,7 @@ export const Router = (props: RouterProps) => {
         }
       />
 
-      <Route
-        path={`${categoriesListRouteRef.path}`}
-        element={<CategoriesPage themeId={propsWithDefaults.themeId} />}
-      />
+      <Route path={`${categoriesListRouteRef.path}`} element={<CategoriesPage themeId={propsWithDefaults.themeId} />} />
     </Routes>
   );
 };

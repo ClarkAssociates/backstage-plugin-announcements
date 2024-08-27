@@ -1,22 +1,13 @@
 import { DateTime } from 'luxon';
 import { WebStorage } from '@backstage/core-app-api';
-import {
-  DiscoveryApi,
-  ErrorApi,
-  IdentityApi,
-  FetchApi,
-} from '@backstage/core-plugin-api';
+import { DiscoveryApi, ErrorApi, IdentityApi, FetchApi } from '@backstage/core-plugin-api';
 import { ResponseError } from '@backstage/errors';
 import {
   CreateAnnouncementRequest,
   CreateCategoryRequest,
   AnnouncementsApi,
 } from '@clark-associates/backstage-plugin-announcements-react';
-import {
-  Announcement,
-  AnnouncementsList,
-  Category,
-} from '@clark-associates/backstage-plugin-announcements-common';
+import { Announcement, AnnouncementsList, Category } from '@clark-associates/backstage-plugin-announcements-common';
 
 const lastSeenKey = 'user_last_seen_date';
 
@@ -111,9 +102,7 @@ export class AnnouncementsClient implements AnnouncementsApi {
     return this.fetch<Announcement>(`/announcements/${id}`);
   }
 
-  async createAnnouncement(
-    request: CreateAnnouncementRequest,
-  ): Promise<Announcement> {
+  async createAnnouncement(request: CreateAnnouncementRequest): Promise<Announcement> {
     return await this.fetch<Announcement>(`/announcements`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -121,10 +110,7 @@ export class AnnouncementsClient implements AnnouncementsApi {
     });
   }
 
-  async updateAnnouncement(
-    id: string,
-    request: CreateAnnouncementRequest,
-  ): Promise<Announcement> {
+  async updateAnnouncement(id: string, request: CreateAnnouncementRequest): Promise<Announcement> {
     return this.fetch<Announcement>(`/announcements/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },

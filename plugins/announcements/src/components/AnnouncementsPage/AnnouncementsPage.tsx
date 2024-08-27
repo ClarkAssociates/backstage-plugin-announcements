@@ -20,11 +20,7 @@ import {
 } from '@backstage/core-components';
 import { alertApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
 import { parseEntityRef } from '@backstage/catalog-model';
-import {
-  EntityDisplayName,
-  EntityPeekAheadPopover,
-  entityRouteRef,
-} from '@backstage/plugin-catalog-react';
+import { EntityDisplayName, EntityPeekAheadPopover, entityRouteRef } from '@backstage/plugin-catalog-react';
 import Alert from '@material-ui/lab/Alert';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -50,10 +46,7 @@ import { DeleteAnnouncementDialog } from './DeleteAnnouncementDialog';
 import { useDeleteAnnouncementDialogState } from './useDeleteAnnouncementDialogState';
 import { Pagination } from '@material-ui/lab';
 import { ContextMenu } from './ContextMenu';
-import {
-  announcementsApiRef,
-  useAnnouncements,
-} from '@clark-associates/backstage-plugin-announcements-react';
+import { announcementsApiRef, useAnnouncements } from '@clark-associates/backstage-plugin-announcements-react';
 
 const useStyles = makeStyles(theme => ({
   cardHeader: {
@@ -94,15 +87,8 @@ const AnnouncementCard = ({
 
   const publisherRef = parseEntityRef(announcement.publisher);
   const title = (
-    <Tooltip
-      title={announcement.title}
-      disableFocusListener
-      data-testid="announcement-card-title-tooltip"
-    >
-      <Link
-        className={classes.cardHeader}
-        to={viewAnnouncementLink({ id: announcement.id })}
-      >
+    <Tooltip title={announcement.title} disableFocusListener data-testid="announcement-card-title-tooltip">
+      <Link className={classes.cardHeader} to={viewAnnouncementLink({ id: announcement.id })}>
         {truncate(announcement.title, titleLength)}
       </Link>
     </Tooltip>
@@ -119,9 +105,7 @@ const AnnouncementCard = ({
         <>
           {' '}
           in{' '}
-          <Link
-            to={`${announcementsLink()}?category=${announcement.category.slug}`}
-          >
+          <Link to={`${announcementsLink()}?category=${announcement.category.slug}`}>
             {announcement.category.title}
           </Link>
         </>
@@ -129,16 +113,16 @@ const AnnouncementCard = ({
       , {DateTime.fromISO(announcement.created_at).toRelative()}
     </>
   );
-  const { loading: loadingDeletePermission, allowed: canDelete } =
-    usePermission({ permission: announcementDeletePermission });
-  const { loading: loadingUpdatePermission, allowed: canUpdate } =
-    usePermission({ permission: announcementUpdatePermission });
+  const { loading: loadingDeletePermission, allowed: canDelete } = usePermission({
+    permission: announcementDeletePermission,
+  });
+  const { loading: loadingUpdatePermission, allowed: canUpdate } = usePermission({
+    permission: announcementUpdatePermission,
+  });
 
   const AnnouncementEditMenu = () => {
     const [open, setOpen] = React.useState(false);
-    const [anchorEl, setAnchorEl] = React.useState<undefined | HTMLElement>(
-      undefined,
-    );
+    const [anchorEl, setAnchorEl] = React.useState<undefined | HTMLElement>(undefined);
 
     const handleOpenEditMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
       setAnchorEl(event.currentTarget);
@@ -151,11 +135,7 @@ const AnnouncementCard = ({
     };
     return (
       <>
-        <IconButton
-          data-testid="announcement-edit-menu"
-          aria-label="more"
-          onClick={handleOpenEditMenu}
-        >
+        <IconButton data-testid="announcement-edit-menu" aria-label="more" onClick={handleOpenEditMenu}>
           <MoreVertIcon />
         </IconButton>
         <Menu anchorEl={anchorEl} open={open} onClose={handleCloseEditClose}>
@@ -186,11 +166,7 @@ const AnnouncementCard = ({
 
   return (
     <Card>
-      <CardHeader
-        action={<AnnouncementEditMenu />}
-        title={title}
-        subheader={subTitle}
-      />
+      <CardHeader action={<AnnouncementEditMenu />} title={title} subheader={subTitle} />
       <CardContent>{announcement.excerpt}</CardContent>
     </Card>
   );
@@ -273,19 +249,11 @@ const AnnouncementsGrid = ({
 
       {announcements && announcements.count !== 0 && (
         <div className={classes.pagination}>
-          <Pagination
-            count={Math.ceil(announcements.count / maxPerPage)}
-            page={page}
-            onChange={handleChange}
-          />
+          <Pagination count={Math.ceil(announcements.count / maxPerPage)} page={page} onChange={handleChange} />
         </div>
       )}
 
-      <DeleteAnnouncementDialog
-        open={isDeleteDialogOpen}
-        onCancel={onCancelDelete}
-        onConfirm={onConfirmDelete}
-      />
+      <DeleteAnnouncementDialog open={isDeleteDialogOpen} onCancel={onCancelDelete} onConfirm={onConfirmDelete} />
     </>
   );
 };
@@ -312,8 +280,9 @@ export const AnnouncementsPage = (props: AnnouncementsPageProps) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const newAnnouncementLink = useRouteRef(announcementCreateRouteRef);
-  const { loading: loadingCreatePermission, allowed: canCreate } =
-    usePermission({ permission: announcementCreatePermission });
+  const { loading: loadingCreatePermission, allowed: canCreate } = usePermission({
+    permission: announcementCreatePermission,
+  });
 
   return (
     <Page themeId={props.themeId}>
@@ -324,15 +293,8 @@ export const AnnouncementsPage = (props: AnnouncementsPageProps) => {
       <Content>
         <ContentHeader title="">
           {!loadingCreatePermission && (
-            <LinkButton
-              disabled={!canCreate}
-              to={newAnnouncementLink()}
-              color="primary"
-              variant="contained"
-            >
-              {props.buttonOptions
-                ? `New ${props.buttonOptions.name}`
-                : 'New announcement'}
+            <LinkButton disabled={!canCreate} to={newAnnouncementLink()} color="primary" variant="contained">
+              {props.buttonOptions ? `New ${props.buttonOptions.name}` : 'New announcement'}
             </LinkButton>
           )}
         </ContentHeader>

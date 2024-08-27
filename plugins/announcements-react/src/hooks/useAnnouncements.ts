@@ -1,9 +1,6 @@
 import { useApi } from '@backstage/core-plugin-api';
 import { announcementsApiRef } from '../apis';
-import {
-  AnnouncementsFilters,
-  AnnouncementsList,
-} from '@clark-associates/backstage-plugin-announcements-common';
+import { AnnouncementsFilters, AnnouncementsList } from '@clark-associates/backstage-plugin-announcements-common';
 import { useAsyncRetry } from 'react-use';
 
 type UseAnnouncementsPropOptions = {

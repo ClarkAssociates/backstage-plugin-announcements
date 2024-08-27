@@ -163,8 +163,7 @@ describe('AnnouncementsDatabase', () => {
   describe('filters', () => {
     it('categories', async () => {
       database = createDatabaseManager(testDbClient);
-      const categoryStore = (await initializePersistenceContext(database))
-        .categoriesStore;
+      const categoryStore = (await initializePersistenceContext(database)).categoriesStore;
 
       await categoryStore.insert({
         slug: 'category',

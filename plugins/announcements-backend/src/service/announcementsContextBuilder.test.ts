@@ -1,10 +1,7 @@
 import { buildAnnouncementsContext } from './announcementsContextBuilder';
 import { getVoidLogger } from '@backstage/backend-common';
 import { initializePersistenceContext } from './persistence/persistenceContext';
-import {
-  HttpAuthService,
-  PermissionsService,
-} from '@backstage/backend-plugin-api';
+import { HttpAuthService, PermissionsService } from '@backstage/backend-plugin-api';
 
 jest.mock('./persistence/persistenceContext', () => ({
   initializePersistenceContext: jest.fn(),

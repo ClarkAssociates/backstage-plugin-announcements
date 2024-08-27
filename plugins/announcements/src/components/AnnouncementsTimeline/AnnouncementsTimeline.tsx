@@ -79,20 +79,12 @@ export const AnnouncementsTimeline = ({
   if (error) return <>Error: {error.message}</>;
 
   return (
-    <Stack
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      spacing={0}
-    >
+    <Stack direction="column" justifyContent="center" alignItems="center" spacing={0}>
       <Box sx={{ minWidth: timelineMinWidth }}>
         <Timeline align={timelineAlignment}>
           {announcements.results.map(a => (
             <TimelineItem key={`ti-${a.id}`}>
-              <TimelineOppositeContent
-                key={`toc-${a.id}`}
-                style={{ margin: 'auto 0' }}
-              >
+              <TimelineOppositeContent key={`toc-${a.id}`} style={{ margin: 'auto 0' }}>
                 {DateTime.fromISO(a.created_at).toRelative()}
               </TimelineOppositeContent>
 

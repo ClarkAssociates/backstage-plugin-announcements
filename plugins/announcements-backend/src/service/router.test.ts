@@ -8,10 +8,7 @@ import { AnnouncementsDatabase } from './persistence/AnnouncementsDatabase';
 import { PersistenceContext } from './persistence/persistenceContext';
 import { createRouter } from './router';
 import { CategoriesDatabase } from './persistence/CategoriesDatabase';
-import {
-  HttpAuthService,
-  PermissionsService,
-} from '@backstage/backend-plugin-api';
+import { HttpAuthService, PermissionsService } from '@backstage/backend-plugin-api';
 
 describe('createRouter', () => {
   let app: express.Express;

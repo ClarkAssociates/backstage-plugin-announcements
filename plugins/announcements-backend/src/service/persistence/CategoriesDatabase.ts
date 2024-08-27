@@ -7,10 +7,7 @@ export class CategoriesDatabase {
   constructor(private readonly db: Knex) {}
 
   async categories(): Promise<Category[]> {
-    const queryBuilder = this.db<Category>(categoriesTable).orderBy(
-      'title',
-      'asc',
-    );
+    const queryBuilder = this.db<Category>(categoriesTable).orderBy('title', 'asc');
 
     return queryBuilder.select();
   }
@@ -24,8 +21,6 @@ export class CategoriesDatabase {
   }
 
   async update(category: Category): Promise<void> {
-    await this.db<Category>(categoriesTable)
-      .where('slug', category.slug)
-      .update(category);
+    await this.db<Category>(categoriesTable).where('slug', category.slug).update(category);
   }
 }

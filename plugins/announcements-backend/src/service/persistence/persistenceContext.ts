@@ -1,15 +1,9 @@
-import {
-  PluginDatabaseManager,
-  resolvePackagePath,
-} from '@backstage/backend-common';
+import { PluginDatabaseManager, resolvePackagePath } from '@backstage/backend-common';
 import { AnnouncementsDatabase } from './AnnouncementsDatabase';
 import { CategoriesDatabase } from './CategoriesDatabase';
 import { IAnnouncementsDatabase } from './IAnnouncementsDatabase';
 
-const migrationsDir = resolvePackagePath(
-  '@clark-associates/backstage-plugin-announcements-backend',
-  'db/migrations',
-);
+const migrationsDir = resolvePackagePath('@clark-associates/backstage-plugin-announcements-backend', 'db/migrations');
 
 /**
  * A Container for persistence related components in Announcements
@@ -39,8 +33,7 @@ export const initializePersistenceContext = async (
   }
 
   return {
-    announcementsStore:
-      announcementsDatabase ?? new AnnouncementsDatabase(client),
+    announcementsStore: announcementsDatabase ?? new AnnouncementsDatabase(client),
     categoriesStore: new CategoriesDatabase(client),
   };
 };

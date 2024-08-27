@@ -2,19 +2,11 @@ import React, { useState } from 'react';
 import { DateTime } from 'luxon';
 import { Link } from '@backstage/core-components';
 import { useApi, useRouteRef } from '@backstage/core-plugin-api';
-import {
-  IconButton,
-  makeStyles,
-  Snackbar,
-  SnackbarContent,
-} from '@material-ui/core';
+import { IconButton, makeStyles, Snackbar, SnackbarContent } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import Close from '@material-ui/icons/Close';
 import { announcementViewRouteRef } from '../../routes';
-import {
-  announcementsApiRef,
-  useAnnouncements,
-} from '@clark-associates/backstage-plugin-announcements-react';
+import { announcementsApiRef, useAnnouncements } from '@clark-associates/backstage-plugin-announcements-react';
 import { Announcement } from '@clark-associates/backstage-plugin-announcements-common';
 
 const useStyles = makeStyles(theme => ({
@@ -63,18 +55,14 @@ const AnnouncementBanner = (props: AnnouncementBannerProps) => {
   const announcement = props.announcement;
 
   const handleClick = () => {
-    announcementsApi.markLastSeenDate(
-      DateTime.fromISO(announcement.created_at),
-    );
+    announcementsApi.markLastSeenDate(DateTime.fromISO(announcement.created_at));
     setBannerOpen(false);
   };
 
   const message = (
     <>
       <span className={classes.bannerIcon}>📣</span>
-      <Link to={viewAnnouncementLink({ id: announcement.id })}>
-        {announcement.title}
-      </Link>
+      <Link to={viewAnnouncementLink({ id: announcement.id })}>{announcement.title}</Link>
       &nbsp;– {announcement.excerpt}
     </>
   );
@@ -83,22 +71,13 @@ const AnnouncementBanner = (props: AnnouncementBannerProps) => {
     <Snackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       open={bannerOpen}
-      className={
-        variant === 'block'
-          ? classes.blockPositioning
-          : classes.floatingPositioning
-      }
+      className={variant === 'block' ? classes.blockPositioning : classes.floatingPositioning}
     >
       <SnackbarContent
         className={classes.content}
         message={message}
         action={[
-          <IconButton
-            key="dismiss"
-            title="Mark as seen"
-            color="inherit"
-            onClick={handleClick}
-          >
+          <IconButton key="dismiss" title="Mark as seen" color="inherit" onClick={handleClick}>
             <Close className={classes.icon} />
           </IconButton>,
         ]}
@@ -143,11 +122,7 @@ export const NewAnnouncementBanner = (props: NewAnnouncementBannerProps) => {
   return (
     <>
       {unseenAnnouncements.map(announcement => (
-        <AnnouncementBanner
-          key={announcement.id}
-          announcement={announcement}
-          variant={props.variant}
-        />
+        <AnnouncementBanner key={announcement.id} announcement={announcement} variant={props.variant} />
       ))}
     </>
   );

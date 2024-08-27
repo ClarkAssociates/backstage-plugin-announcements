@@ -20,10 +20,7 @@ export type AnnouncementFormProps = {
   onSubmit: (data: CreateAnnouncementRequest) => Promise<void>;
 };
 
-export const AnnouncementForm = ({
-  initialData,
-  onSubmit,
-}: AnnouncementFormProps) => {
+export const AnnouncementForm = ({ initialData, onSubmit }: AnnouncementFormProps) => {
   const classes = useStyles();
   const identityApi = useApi(identityApiRef);
   const [form, setForm] = React.useState({
@@ -56,9 +53,7 @@ export const AnnouncementForm = ({
   };
 
   return (
-    <InfoCard
-      title={initialData.title ? `Edit announcement` : 'New announcement'}
-    >
+    <InfoCard title={initialData.title ? `Edit announcement` : 'New announcement'}>
       <form className={classes.formRoot} onSubmit={handleSubmit}>
         <TextField
           id="title"
@@ -70,11 +65,7 @@ export const AnnouncementForm = ({
           fullWidth
           required
         />
-        <CategoryInput
-          setForm={setForm}
-          form={form}
-          initialValue={initialData.category?.title ?? ''}
-        />
+        <CategoryInput setForm={setForm} form={form} initialValue={initialData.category?.title ?? ''} />
         <TextField
           id="excerpt"
           type="text"
@@ -90,12 +81,7 @@ export const AnnouncementForm = ({
           style={{ minHeight: '30rem' }}
           onChange={value => setForm({ ...form, ...{ body: value || '' } })}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          disabled={loading || !form.body}
-        >
+        <Button variant="contained" color="primary" type="submit" disabled={loading || !form.body}>
           Submit
         </Button>
       </form>
