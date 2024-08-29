@@ -58,8 +58,6 @@ describe('categories', () => {
     store.insert(category);
 
     await store.update({ ...category, title: 'New Title' });
-    expect(await store.categories()).toEqual([
-      { slug: 'category-1', title: 'New Title' },
-    ]);
+    expect(await store.categories()).toEqual([{ slug: 'category-1', title: 'New Title' }]);
   });
 });

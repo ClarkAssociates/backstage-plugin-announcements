@@ -1,18 +1,11 @@
 import React, { ReactNode } from 'react';
 import { useAsync } from 'react-use';
 import { Page, Header, Content, Progress } from '@backstage/core-components';
-import {
-  alertApiRef,
-  useApi,
-  useRouteRefParams,
-} from '@backstage/core-plugin-api';
+import { alertApiRef, useApi, useRouteRefParams } from '@backstage/core-plugin-api';
 import { Alert } from '@material-ui/lab';
 import { AnnouncementForm } from '../AnnouncementForm';
 import { announcementEditRouteRef } from '../../routes';
-import {
-  announcementsApiRef,
-  CreateAnnouncementRequest,
-} from '@clark-associates/backstage-plugin-announcements-react';
+import { announcementsApiRef, CreateAnnouncementRequest } from '@clark-associates/backstage-plugin-announcements-react';
 
 type EditAnnouncementPageProps = {
   themeId: string;
@@ -24,9 +17,7 @@ export const EditAnnouncementPage = (props: EditAnnouncementPageProps) => {
   const announcementsApi = useApi(announcementsApiRef);
   const alertApi = useApi(alertApiRef);
   const { id } = useRouteRefParams(announcementEditRouteRef);
-  const { value, loading, error } = useAsync(async () =>
-    announcementsApi.announcementByID(id),
-  );
+  const { value, loading, error } = useAsync(async () => announcementsApi.announcementByID(id));
 
   let title = props.title;
   let content: React.ReactNode = <Progress />;

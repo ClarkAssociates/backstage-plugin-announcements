@@ -1,18 +1,12 @@
 import { Knex } from 'knex';
 import { DateTime } from 'luxon';
 import { AnnouncementModel } from '../model';
-import {
-  AnnouncementsFilters,
-  Announcement,
-} from '@clark-associates/backstage-plugin-announcements-common';
+import { AnnouncementsFilters, Announcement } from '@clark-associates/backstage-plugin-announcements-common';
 import { IAnnouncementsDatabase } from './IAnnouncementsDatabase';
 
 const announcementsTable = 'announcements';
 
-export type AnnouncementUpsert = Omit<
-  Announcement,
-  'category' | 'created_at'
-> & {
+export type AnnouncementUpsert = Omit<Announcement, 'category' | 'created_at'> & {
   category?: string;
   created_at: DateTime;
 };
@@ -46,9 +40,7 @@ export const timestampToDateTime = (input: Date | string): DateTime => {
   return result;
 };
 
-const announcementUpsertToDB = (
-  announcement: AnnouncementUpsert,
-): DbAnnouncement => {
+const announcementUpsertToDB = (announcement: AnnouncementUpsert): DbAnnouncement => {
   return {
     id: announcement.id,
     category: announcement.category,
@@ -61,9 +53,7 @@ const announcementUpsertToDB = (
   };
 };
 
-const DBToAnnouncementWithCategory = (
-  announcementDb: DbAnnouncementWithCategory,
-): AnnouncementModel => {
+const DBToAnnouncementWithCategory = (announcementDb: DbAnnouncementWithCategory): AnnouncementModel => {
   return {
     id: announcementDb.id,
     category:
@@ -85,12 +75,10 @@ const DBToAnnouncementWithCategory = (
 export class AnnouncementsDatabase implements IAnnouncementsDatabase {
   constructor(private readonly db: Knex) {}
 
-  async announcements(
-    request: AnnouncementsFilters,
-  ): Promise<AnnouncementModelsList> {
-    const countQueryBuilder = this.db<DbAnnouncement>(announcementsTable).count<
-      Record<string, number>
-    >('id', { as: 'total' });
+  async announcements(request: AnnouncementsFilters): Promise<AnnouncementModelsList> {
+    const countQueryBuilder = this.db<DbAnnouncement>(announcementsTable).count<Record<string, number>>('id', {
+      as: 'total',
+    });
 
     if (request.category) {
       countQueryBuilder.where('category', request.category);
@@ -130,9 +118,7 @@ export class AnnouncementsDatabase implements IAnnouncementsDatabase {
   }
 
   async announcementByID(id: string): Promise<AnnouncementModel | undefined> {
-    const dbAnnouncement = await this.db<DbAnnouncementWithCategory>(
-      announcementsTable,
-    )
+    const dbAnnouncement = await this.db<DbAnnouncementWithCategory>(announcementsTable)
       .select(
         'id',
         'publisher',
@@ -159,19 +145,13 @@ export class AnnouncementsDatabase implements IAnnouncementsDatabase {
     return this.db<DbAnnouncement>(announcementsTable).where('id', id).delete();
   }
 
-  async insertAnnouncement(
-    announcement: AnnouncementUpsert,
-  ): Promise<AnnouncementModel> {
-    await this.db<DbAnnouncement>(announcementsTable).insert(
-      announcementUpsertToDB(announcement),
-    );
+  async insertAnnouncement(announcement: AnnouncementUpsert): Promise<AnnouncementModel> {
+    await this.db<DbAnnouncement>(announcementsTable).insert(announcementUpsertToDB(announcement));
 
     return (await this.announcementByID(announcement.id))!;
   }
 
-  async updateAnnouncement(
-    announcement: AnnouncementUpsert,
-  ): Promise<AnnouncementModel> {
+  async updateAnnouncement(announcement: AnnouncementUpsert): Promise<AnnouncementModel> {
     await this.db<DbAnnouncement>(announcementsTable)
       .where('id', announcement.id)
       .update(announcementUpsertToDB(announcement));

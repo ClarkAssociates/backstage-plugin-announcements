@@ -7,16 +7,12 @@ export type DeleteAnnouncementDialogProps = {
   onCancel: () => any;
 };
 
-export const DeleteAnnouncementDialog = (
-  props: DeleteAnnouncementDialogProps,
-) => {
+export const DeleteAnnouncementDialog = (props: DeleteAnnouncementDialogProps) => {
   const { open, onConfirm, onCancel } = props;
 
   return (
     <Dialog open={open} onClose={onCancel}>
-      <DialogTitle>
-        Are you sure you want to delete this announcement?
-      </DialogTitle>
+      <DialogTitle>Are you sure you want to delete this announcement?</DialogTitle>
 
       <DialogActions>
         <Button onClick={onCancel} color="default">

@@ -1,10 +1,7 @@
 import { Readable } from 'stream';
 import { Logger } from 'winston';
 import { DiscoveryApi } from '@backstage/core-plugin-api';
-import {
-  DocumentCollatorFactory,
-  IndexableDocument,
-} from '@backstage/plugin-search-common';
+import { DocumentCollatorFactory, IndexableDocument } from '@backstage/plugin-search-common';
 import { DefaultAnnouncementsService } from '@clark-associates/backstage-plugin-announcements-node';
 import { Announcement } from '@clark-associates/backstage-plugin-announcements-common';
 import { AuthService } from '@backstage/backend-plugin-api';
@@ -60,12 +57,8 @@ export class AnnouncementCollatorFactory implements DocumentCollatorFactory {
     }
   }
 
-  private getDocumentInfo(
-    announcement: Announcement,
-  ): IndexableAnnouncementDocument {
-    this.logger.debug(
-      `mapping announcement ${announcement.id} to indexable document`,
-    );
+  private getDocumentInfo(announcement: Announcement): IndexableAnnouncementDocument {
+    this.logger.debug(`mapping announcement ${announcement.id} to indexable document`);
 
     return {
       title: announcement.title,

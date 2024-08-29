@@ -14,9 +14,7 @@ const categories = [
 ];
 
 jest.mock('@clark-associates/backstage-plugin-announcements-react', () => ({
-  ...jest.requireActual(
-    '@clark-associates/backstage-plugin-announcements-react',
-  ),
+  ...jest.requireActual('@clark-associates/backstage-plugin-announcements-react'),
   useCategories: () => {
     return {
       categories,

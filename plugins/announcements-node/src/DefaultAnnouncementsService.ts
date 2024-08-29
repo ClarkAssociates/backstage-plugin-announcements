@@ -1,11 +1,5 @@
-import {
-  Announcement,
-  AnnouncementsList,
-} from '@clark-associates/backstage-plugin-announcements-common';
-import {
-  AnnouncementRequestOptions,
-  AnnouncementsService,
-} from './AnnouncementsService';
+import { Announcement, AnnouncementsList } from '@clark-associates/backstage-plugin-announcements-common';
+import { AnnouncementRequestOptions, AnnouncementsService } from './AnnouncementsService';
 import { DiscoveryApi } from '@backstage/core-plugin-api';
 import { ResponseError } from '@backstage/errors';
 
@@ -24,10 +18,7 @@ export class DefaultAnnouncementsService implements AnnouncementsService {
     this.discoveryApi = opts.discoveryApi;
   }
 
-  private async fetch<T = any>(
-    input: string,
-    options?: AnnouncementRequestOptions,
-  ): Promise<T> {
+  private async fetch<T = any>(input: string, options?: AnnouncementRequestOptions): Promise<T> {
     const baseApiUrl = await this.discoveryApi.getBaseUrl('announcements');
 
     return fetch(`${baseApiUrl}${input}`, {
@@ -43,13 +34,8 @@ export class DefaultAnnouncementsService implements AnnouncementsService {
     });
   }
 
-  async announcements(
-    options?: AnnouncementRequestOptions,
-  ): Promise<Announcement[]> {
-    const { results } = await this.fetch<AnnouncementsList>(
-      '/announcements',
-      options,
-    );
+  async announcements(options?: AnnouncementRequestOptions): Promise<Announcement[]> {
+    const { results } = await this.fetch<AnnouncementsList>('/announcements', options);
     return results;
   }
 }

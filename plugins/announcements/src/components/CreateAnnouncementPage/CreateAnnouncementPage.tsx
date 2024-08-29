@@ -9,10 +9,7 @@ import {
   announcementsApiRef,
   useCategories,
 } from '@clark-associates/backstage-plugin-announcements-react';
-import {
-  Announcement,
-  Category,
-} from '@clark-associates/backstage-plugin-announcements-common';
+import { Announcement, Category } from '@clark-associates/backstage-plugin-announcements-common';
 
 type CreateAnnouncementPageProps = {
   themeId: string;
@@ -60,10 +57,7 @@ export const CreateAnnouncementPage = (props: CreateAnnouncementPageProps) => {
       <Header title={props.title} subtitle={props.subtitle} />
 
       <Content>
-        <AnnouncementForm
-          initialData={{} as Announcement}
-          onSubmit={onSubmit}
-        />
+        <AnnouncementForm initialData={{} as Announcement} onSubmit={onSubmit} />
       </Content>
     </Page>
   );

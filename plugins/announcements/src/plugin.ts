@@ -64,8 +64,7 @@ export const AnnouncementsCard = announcementsPlugin.provide(
   createComponentExtension({
     name: 'AnnouncementsCard',
     component: {
-      lazy: () =>
-        import('./components/AnnouncementsCard').then(m => m.AnnouncementsCard),
+      lazy: () => import('./components/AnnouncementsCard').then(m => m.AnnouncementsCard),
     },
   }),
 );
@@ -74,10 +73,7 @@ export const NewAnnouncementBanner = announcementsPlugin.provide(
   createComponentExtension({
     name: 'NewAnnouncementBanner',
     component: {
-      lazy: () =>
-        import('./components/NewAnnouncementBanner').then(
-          m => m.NewAnnouncementBanner,
-        ),
+      lazy: () => import('./components/NewAnnouncementBanner').then(m => m.NewAnnouncementBanner),
     },
   }),
 );
@@ -88,9 +84,7 @@ export const AnnouncementSearchResultListItem: (
   createSearchResultListItemExtension({
     name: 'AnnouncementSearchResultListItem',
     component: () =>
-      import('./components/AnnouncementSearchResultListItem').then(
-        m => m.AnnouncementSearchResultListItem,
-      ),
+      import('./components/AnnouncementSearchResultListItem').then(m => m.AnnouncementSearchResultListItem),
     predicate: result => result.type === 'announcements',
   }),
 );

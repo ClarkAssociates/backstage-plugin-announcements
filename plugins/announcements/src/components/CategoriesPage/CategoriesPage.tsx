@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Page,
-  Header,
-  Content,
-  Table,
-  TableColumn,
-  ErrorPanel,
-} from '@backstage/core-components';
+import { Page, Header, Content, Table, TableColumn, ErrorPanel } from '@backstage/core-components';
 import { Button, makeStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { NewCategoryDialog } from '../NewCategoryDialog';
@@ -73,21 +66,14 @@ const CategoriesTable = () => {
           <div className={classes.empty}>
             <p>No category was created yet.</p>
             <p>
-              <Button
-                color="primary"
-                variant="outlined"
-                onClick={() => setNewCategoryDialogOpen(true)}
-              >
+              <Button color="primary" variant="outlined" onClick={() => setNewCategoryDialogOpen(true)}>
                 Add category
               </Button>
             </p>
           </div>
         }
       />
-      <NewCategoryDialog
-        open={newCategoryDialogOpen}
-        onClose={onNewCategoryDialogClose}
-      />
+      <NewCategoryDialog open={newCategoryDialogOpen} onClose={onNewCategoryDialogClose} />
     </>
   );
 };

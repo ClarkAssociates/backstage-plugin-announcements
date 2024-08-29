@@ -19,9 +19,7 @@ export interface ServerOptions {
   logger: Logger;
 }
 
-export async function startStandaloneServer(
-  options: ServerOptions,
-): Promise<Server> {
+export async function startStandaloneServer(options: ServerOptions): Promise<Server> {
   const logger = options.logger.child({
     service: 'announcements-backend-backend',
   });
@@ -33,10 +31,7 @@ export async function startStandaloneServer(
     tokenManager,
   });
   // TODO: Move to use services instead of this hack
-  const { httpAuth } = createLegacyAuthAdapters<
-    any,
-    { httpAuth: HttpAuthService }
-  >({
+  const { httpAuth } = createLegacyAuthAdapters<any, { httpAuth: HttpAuthService }>({
     tokenManager,
     discovery,
   });

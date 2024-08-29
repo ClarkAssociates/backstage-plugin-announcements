@@ -1,16 +1,10 @@
 import { screen } from '@testing-library/react';
-import {
-  AnnouncementsTimeline,
-  AnnouncementsTimelineProps,
-} from './AnnouncementsTimeline';
+import { AnnouncementsTimeline, AnnouncementsTimelineProps } from './AnnouncementsTimeline';
 import React from 'react';
 import { TestApiProvider, renderInTestApp } from '@backstage/test-utils';
 import { rootRouteRef } from '../../routes';
 import { AnnouncementsList } from '@clark-associates/backstage-plugin-announcements-common';
-import {
-  AnnouncementsApi,
-  announcementsApiRef,
-} from '@clark-associates/backstage-plugin-announcements-react';
+import { AnnouncementsApi, announcementsApiRef } from '@clark-associates/backstage-plugin-announcements-react';
 
 const renderMockTimelineComponent = async ({
   announcements,

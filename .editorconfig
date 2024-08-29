@@ -8,6 +8,10 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 charset = utf-8
+indent_size = 4
+indent_style = space
+max_line_length = 120
+tab_width = 4
 
 # 4 space indentation for JS stuff
 [*.{js,json,ts,tsx}]
@@ -17,3 +21,15 @@ indent_size = 2
 # Tab indentation (no size specified)
 [Makefile]
 indent_style = tab
+
+[{.babelrc,.eslintrc,.prettierrc,.stylelintrc,jest.config}]
+indent_size = 2
+
+[*.html]
+indent_size = 2
+
+[*.md]
+indent_size = 2
+
+[*.{yml,yaml}]
+indent_size = 2

@@ -1,23 +1,10 @@
 import React from 'react';
 import { Content, Header, Page } from '@backstage/core-components';
-import {
-  createApiFactory,
-  createPlugin,
-  createRoutableExtension,
-} from '@backstage/core-plugin-api';
+import { createApiFactory, createPlugin, createRoutableExtension } from '@backstage/core-plugin-api';
 import { createDevApp } from '@backstage/dev-utils';
-import {
-  CatalogApi,
-  catalogApiRef,
-  entityRouteRef,
-} from '@backstage/plugin-catalog-react';
+import { CatalogApi, catalogApiRef, entityRouteRef } from '@backstage/plugin-catalog-react';
 import { Grid, Typography } from '@material-ui/core';
-import {
-  announcementsPlugin,
-  AnnouncementsPage,
-  AnnouncementsCard,
-  NewAnnouncementBanner,
-} from '../src/plugin';
+import { announcementsPlugin, AnnouncementsPage, AnnouncementsCard, NewAnnouncementBanner } from '../src/plugin';
 import { AnnouncementsTimeline } from '../src/components/AnnouncementsTimeline';
 
 const mockCatalogApi = {
@@ -56,8 +43,7 @@ const fakeCatalogPlugin = createPlugin({
 export const CatalogEntityPage: () => JSX.Element = fakeCatalogPlugin.provide(
   createRoutableExtension({
     name: 'CatalogEntityPage',
-    component: () =>
-      import('./FakeCatalogEntityPage').then(m => m.FakeCatalogEntityPage),
+    component: () => import('./FakeCatalogEntityPage').then(m => m.FakeCatalogEntityPage),
     mountPoint: entityRouteRef,
   }),
 );

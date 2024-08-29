@@ -31,11 +31,7 @@ type CategoryInputProps = {
 
 const filter = createFilterOptions<Category>();
 
-export default function CategoryInput({
-  setForm,
-  form,
-  initialValue,
-}: CategoryInputProps) {
+export default function CategoryInput({ setForm, form, initialValue }: CategoryInputProps) {
   const { categories, loading: categoriesLoading } = useCategories();
 
   return (
@@ -48,9 +44,7 @@ export default function CategoryInput({
           return;
         }
 
-        const newCategory = (
-          typeof newValue === 'string' ? newValue : newValue.title
-        )
+        const newCategory = (typeof newValue === 'string' ? newValue : newValue.title)
           .replace('Create ', '')
           .replaceAll('"', '');
 
@@ -64,9 +58,7 @@ export default function CategoryInput({
           Suggest the creation of a new category. This adds the new value to the list of options
           and creates the new category when the form is submitted.
         */
-        const isExisting = options.some(
-          option => inputValue.toLowerCase() === option.title.toLowerCase(),
-        );
+        const isExisting = options.some(option => inputValue.toLowerCase() === option.title.toLowerCase());
         if (inputValue !== '' && !isExisting) {
           filtered.push({
             title: `Create "${inputValue}"`,
@@ -102,9 +94,7 @@ export default function CategoryInput({
             ...params.InputProps,
             endAdornment: (
               <>
-                {categoriesLoading ? (
-                  <CircularProgress color="inherit" size={20} />
-                ) : null}
+                {categoriesLoading ? <CircularProgress color="inherit" size={20} /> : null}
                 {params.InputProps.endAdornment}
               </>
             ),

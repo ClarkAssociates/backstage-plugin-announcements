@@ -5,7 +5,6 @@ export interface AnnouncementsProviderExtensionPoint {
   AddAnnouncemnetsDatabase(provider: IAnnouncementsDatabase): void;
 }
 
-export const announcementsProviderExtensionPoint =
-  createExtensionPoint<AnnouncementsProviderExtensionPoint>({
-    id: 'announcements.Provider',
-  });
+export const announcementsProviderExtensionPoint = createExtensionPoint<AnnouncementsProviderExtensionPoint>({
+  id: 'announcements.Provider',
+});

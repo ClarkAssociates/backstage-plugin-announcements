@@ -1,38 +1,25 @@
 import { AnnouncementsFilters } from '@clark-associates/backstage-plugin-announcements-common';
 import { AnnouncementModel } from '../model';
-import {
-  AnnouncementModelsList,
-  AnnouncementsDatabase,
-  AnnouncementUpsert,
-} from './AnnouncementsDatabase';
+import { AnnouncementModelsList, AnnouncementsDatabase, AnnouncementUpsert } from './AnnouncementsDatabase';
 import { CategoriesDatabase } from './CategoriesDatabase';
 import { IAnnouncementsDatabase } from './IAnnouncementsDatabase';
-import {
-  PersistenceContext,
-  initializePersistenceContext,
-} from './persistenceContext';
+import { PersistenceContext, initializePersistenceContext } from './persistenceContext';
 import { TestDatabases } from '@backstage/backend-test-utils';
 
 class TestAnnouncementsDatabase implements IAnnouncementsDatabase {
-  announcements(
-    request: AnnouncementsFilters,
-  ): Promise<AnnouncementModelsList> {
+  announcements(_request: AnnouncementsFilters): Promise<AnnouncementModelsList> {
     throw new Error('Method not implemented.');
   }
-  announcementByID(id: string): Promise<AnnouncementModel | undefined> {
+  announcementByID(_id: string): Promise<AnnouncementModel | undefined> {
     throw new Error('Method not implemented.');
   }
-  deleteAnnouncementByID(id: string): Promise<void> {
+  deleteAnnouncementByID(_id: string): Promise<void> {
     throw new Error('Method not implemented.');
   }
-  insertAnnouncement(
-    announcement: AnnouncementUpsert,
-  ): Promise<AnnouncementModel> {
+  insertAnnouncement(_announcement: AnnouncementUpsert): Promise<AnnouncementModel> {
     throw new Error('Method not implemented.');
   }
-  updateAnnouncement(
-    announcement: AnnouncementUpsert,
-  ): Promise<AnnouncementModel> {
+  updateAnnouncement(_announcement: AnnouncementUpsert): Promise<AnnouncementModel> {
     throw new Error('Method not implemented.');
   }
 }
@@ -50,7 +37,7 @@ describe('initializePersistenceContext', () => {
   let context: PersistenceContext;
 
   beforeEach(async () => {
-    context = await initializePersistenceContext(mockedDb, undefined);
+    context = await initializePersistenceContext(mockedDb);
   });
 
   it('initializes default announcements store', async () => {
@@ -61,16 +48,11 @@ describe('initializePersistenceContext', () => {
     expect(context.categoriesStore).toBeInstanceOf(CategoriesDatabase);
   });
 
-  it('initializes specified announcemeents store', async () => {
-    const testAnnouncemntsDatabase = new TestAnnouncementsDatabase();
+  it('initializes specified announcements store', async () => {
+    const testAnnouncementsDatabase = new TestAnnouncementsDatabase();
 
-    const testContext = await initializePersistenceContext(
-      mockedDb,
-      testAnnouncemntsDatabase,
-    );
+    const testContext = await initializePersistenceContext(mockedDb, testAnnouncementsDatabase);
 
-    expect(testContext.announcementsStore).toBeInstanceOf(
-      TestAnnouncementsDatabase,
-    );
+    expect(testContext.announcementsStore).toBeInstanceOf(TestAnnouncementsDatabase);
   });
 });

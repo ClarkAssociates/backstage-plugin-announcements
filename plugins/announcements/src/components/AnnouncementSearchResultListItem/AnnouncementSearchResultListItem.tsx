@@ -1,18 +1,9 @@
 import React from 'react';
 import { DateTime } from 'luxon';
 import { Link } from '@backstage/core-components';
-import {
-  IndexableDocument,
-  ResultHighlight,
-} from '@backstage/plugin-search-common';
+import { IndexableDocument, ResultHighlight } from '@backstage/plugin-search-common';
 import { HighlightedSearchResultText } from '@backstage/plugin-search-react';
-import {
-  Divider,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
-} from '@material-ui/core';
+import { Divider, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 
 const useStyles = makeStyles({
@@ -40,10 +31,7 @@ export interface AnnouncementSearchResultProps {
   rank?: number;
 }
 
-export const AnnouncementSearchResultListItem = ({
-  result,
-  highlight,
-}: AnnouncementSearchResultProps) => {
+export const AnnouncementSearchResultListItem = ({ result, highlight }: AnnouncementSearchResultProps) => {
   const classes = useStyles();
 
   if (!result) {
@@ -68,10 +56,7 @@ export const AnnouncementSearchResultListItem = ({
   const excerpt = (
     <>
       <span className={classes.createdAt}>
-        Published{' '}
-        <span title={document.createdAt}>
-          {DateTime.fromISO(document.createdAt).toRelative()}
-        </span>
+        Published <span title={document.createdAt}>{DateTime.fromISO(document.createdAt).toRelative()}</span>
       </span>
       <>
         {highlight?.fields.text ? (

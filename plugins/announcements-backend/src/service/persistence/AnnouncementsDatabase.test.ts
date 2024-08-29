@@ -23,8 +23,7 @@ describe('AnnouncementsDatabase', () => {
   beforeAll(async () => {
     testDbClient = await databases.init('SQLITE_3');
     database = createDatabaseManager(testDbClient);
-    store = (await initializePersistenceContext(database, undefined))
-      .announcementsStore;
+    store = (await initializePersistenceContext(database)).announcementsStore;
   });
 
   afterEach(async () => {
@@ -164,8 +163,7 @@ describe('AnnouncementsDatabase', () => {
   describe('filters', () => {
     it('categories', async () => {
       database = createDatabaseManager(testDbClient);
-      const categoryStore = (await initializePersistenceContext(database))
-        .categoriesStore;
+      const categoryStore = (await initializePersistenceContext(database)).categoriesStore;
 
       await categoryStore.insert({
         slug: 'category',
